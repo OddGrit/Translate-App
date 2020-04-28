@@ -2,4 +2,8 @@
     <string name="app_name">Translate</string>
     <string name="parrot">What you said</string>
     <string name="record">Translate</string>
+    <string name="company">Brought to you by Random Company</string>
+    <string name="history">Check history</string>
+    <string name="returnText">Return</string>
+    <string name="translation">Translation</string>
 </resources>

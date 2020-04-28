@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -25,6 +26,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        Log.d("log lifecycle", getLocalClassName() + ".onCreate()");
+
         parrotTextView = findViewById(R.id.parrotTextView);
         recordButton = findViewById(R.id.recordButton);
 
@@ -33,6 +36,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 listen();
+            }
+        });
+
+        Button historyButton = findViewById(R.id.historyButton);
+        historyButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), HistoryActivity.class);
+                startActivityForResult(intent, 1);
             }
         });
     }
@@ -55,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data){
         super.onActivityResult(requestCode, resultCode, data);
-
+        Log.d("log lifecycle", getLocalClassName() + ".onActivityResult()");
         if (requestCode == INPUT_CODE && resultCode == RESULT_OK && data != null){
             ArrayList<String> result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
 
