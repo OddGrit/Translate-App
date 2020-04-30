@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
 import android.util.Log;
@@ -88,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void translate(String word) {
+    private void translate(final String word) {
         Context c = this;
         RequestQueue queue = Volley.newRequestQueue(c);
         String url = "https://api.mymemory.translated.net/get?q=" + word + "&langpair=en|sv";
@@ -97,7 +98,9 @@ public class MainActivity extends AppCompatActivity {
             new Response.Listener<String>() {
                 @Override
                 public void onResponse(String response) {
-                    translateTextView.setText(parseJSON(response));
+                    String translation = parseJSON(response);
+                    translateTextView.setText(translation);
+                    saveHistory(word, translation);
                 }
             }, new Response.ErrorListener() {
                 @Override
@@ -107,6 +110,13 @@ public class MainActivity extends AppCompatActivity {
             });
 
         queue.add(stringRequest);
+    }
+
+    private void saveHistory(String word, String translation) {
+        SharedPreferences.Editor sharedPreferencesEditor =
+                getSharedPreferences("history", MODE_PRIVATE).edit();
+        //sharedPreferencesEditor.put
+
     }
 
     private String parseJSON(String response) {
