@@ -21,6 +21,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
@@ -113,10 +114,18 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void saveHistory(String word, String translation) {
-        SharedPreferences.Editor sharedPreferencesEditor =
-                getSharedPreferences("history", MODE_PRIVATE).edit();
-        //sharedPreferencesEditor.put
+        SharedPreferences sharedPreferences =
+                getSharedPreferences("history", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
 
+        HashSet<String> set = (HashSet<String>) sharedPreferences.
+                getStringSet("history", new HashSet<String>());
+
+        set.add(word + ListItemAdaptor.delim + translation);
+
+        editor.putStringSet("history", set);
+        editor.apply();
+        editor.commit();
     }
 
     private String parseJSON(String response) {

@@ -16,7 +16,7 @@ public class ListItemAdaptor extends BaseAdapter {
     private LayoutInflater inflater;
     private List<String> history = new ArrayList<String>();
 
-    private static final String delim = ";";
+    public static final String delim = ";";
 
     public ListItemAdaptor(Context context){
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);

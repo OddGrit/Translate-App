@@ -5,7 +5,7 @@ Sprint
 - [x] start google Speech-to-Text
 - [x] make the UI
 - [x] translation
-- [ ] save spoken and translated text
+- [x] save spoken and translated text
 - [ ] load saved text
 
 Översättnings bank med Google translate. Använd Google Speech-to-Text api för att 
@@ -18,5 +18,5 @@ Kraven för att klara slutprojekt:
 - [x] Använder er av Activity Lifecycle metoderna och Log med taggar
 
 För VG så kan ni avklara 
-- [ ] mer än 3 av milstolparna 
+- [x] mer än 3 av milstolparna 
 - [x] inte ha valt “Skånetrafikens hållplats varnare” projektet.
