@@ -106,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
             }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
-                    //translateTextView.setText("Connection error");
+                    translateTextView.setText("Connection error");
                 }
             });
 
@@ -115,15 +115,17 @@ public class MainActivity extends AppCompatActivity {
 
     private void saveHistory(String word, String translation) {
         SharedPreferences sharedPreferences =
-                getSharedPreferences("history", MODE_PRIVATE);
+                getSharedPreferences("history2", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
-        HashSet<String> set = (HashSet<String>) sharedPreferences.
-                getStringSet("history", new HashSet<String>());
+        // have to make a new HashSet, fetch the HashSet and adding doesn't properly overwrite
+        // previous HashSet when saved
+        HashSet<String> set = new HashSet<String>(sharedPreferences.
+                getStringSet("historySet", new HashSet<String>()));
 
         set.add(word + ListItemAdaptor.delim + translation);
 
-        editor.putStringSet("history", set);
+        editor.putStringSet("historySet", set);
         editor.apply();
         editor.commit();
     }

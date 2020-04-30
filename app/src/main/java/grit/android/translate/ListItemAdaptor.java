@@ -11,6 +11,7 @@ import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 public class ListItemAdaptor extends BaseAdapter {
     private LayoutInflater inflater;
@@ -39,6 +40,11 @@ public class ListItemAdaptor extends BaseAdapter {
 
     public void addItem(String word, String translation){
         history.add(word + delim + translation);
+    }
+
+    public void setItems(Set<String> set) {
+        history.clear();
+        history.addAll(set);
     }
 
     public void addItem(String concatString){

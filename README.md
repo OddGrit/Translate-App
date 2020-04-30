@@ -6,7 +6,7 @@ Sprint
 - [x] make the UI
 - [x] translation
 - [x] save spoken and translated text
-- [ ] load saved text
+- [x] load saved text
 
 Översättnings bank med Google translate. Använd Google Speech-to-Text api för att 
 generera text som sen ska kunna översättas och spara både original och översatt text.
